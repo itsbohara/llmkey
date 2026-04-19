@@ -1,0 +1,15 @@
+{
+  "name": "llmkey",
+  "version": "1.0.0",
+  "description": "Manage LLM provider API keys as system environment variables",
+  "bin": {
+    "llmkey": "./bin/llmkey.js"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "inquirer": "^8.2.6"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
