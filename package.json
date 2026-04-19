@@ -2,6 +2,7 @@
   "name": "llmkey",
   "version": "1.0.0",
   "description": "Manage LLM provider API keys as system environment variables",
+  "type": "commonjs",
   "bin": {
     "llmkey": "./bin/llmkey.js"
   },

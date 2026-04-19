@@ -2,6 +2,7 @@ const PROVIDERS = {
   openai: 'OPENAI_API_KEY',
   fireworks: 'FIREWORKS_API_KEY',
   nvidia: 'NVIDIA_API_KEY',
+  anthropic: 'ANTHROPIC_API_KEY',
 };
 
 function resolveEnvVar(arg) {
