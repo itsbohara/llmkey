@@ -4,7 +4,10 @@
   "description": "Manage LLM provider API keys as system environment variables",
   "type": "commonjs",
   "bin": {
-    "llmkey": "./bin/llmkey.js"
+    "llmkey": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "ncc build bin/llmkey.js -o dist"
   },
   "dependencies": {
     "commander": "^11.0.0",
@@ -12,5 +15,8 @@
   },
   "engines": {
     "node": ">=16"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.4"
   }
 }
