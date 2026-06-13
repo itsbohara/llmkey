@@ -33,9 +33,13 @@ sudo mv llmkey /usr/local/bin/
 
 Download `llmkey-win-x64.exe` from [releases](https://github.com/itsbohara/llmkey/releases/latest), rename it to `llmkey.exe`, and add it to a folder in your `PATH`.
 
-### Via npm
+### Build from source
 
 ```sh
+git clone https://github.com/itsbohara/llmkey.git
+cd llmkey
+npm install
+npm run build
 npm install -g .
 ```
 
