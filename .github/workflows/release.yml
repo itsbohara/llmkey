@@ -22,11 +22,6 @@ jobs:
           bun build bin/llmkey.js --compile --outfile binaries/llmkey-macos-arm64 --target bun-darwin-arm64
           bun build bin/llmkey.js --compile --outfile binaries/llmkey-macos-x64   --target bun-darwin-x64
 
-      - name: Sign macOS binaries
-        run: |
-          codesign --sign - binaries/llmkey-macos-arm64
-          codesign --sign - binaries/llmkey-macos-x64
-
       - uses: actions/upload-artifact@v4
         with:
           name: macos-binaries
