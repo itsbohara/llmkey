@@ -8,17 +8,16 @@
   },
   "scripts": {
     "build": "ncc build bin/llmkey.js -o dist",
-    "build:binaries": "npm run build && pkg dist/index.js --targets node24-macos-arm64,node24-macos-x64,node24-linux-x64,node24-win-x64 --out-path binaries"
+    "build:binaries": "bun build bin/llmkey.js --compile --outfile binaries/llmkey"
   },
   "dependencies": {
     "commander": "^11.0.0",
     "inquirer": "^8.2.6"
   },
   "engines": {
-    "node": ">=24"
+    "node": ">=16"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.38.4",
-    "pkg": "^5.8.1"
+    "@vercel/ncc": "^0.38.4"
   }
 }

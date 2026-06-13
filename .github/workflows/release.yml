@@ -11,19 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
+      - uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: npm install
+        run: bun install
 
       - name: Build macOS binaries
         run: |
-          npm run build
           mkdir -p binaries
-          npx pkg dist/index.js --targets node24-macos-arm64 --output binaries/llmkey-macos-arm64
-          npx pkg dist/index.js --targets node24-macos-x64   --output binaries/llmkey-macos-x64
+          bun build bin/llmkey.js --compile --outfile binaries/llmkey-macos-arm64 --target bun-darwin-arm64
+          bun build bin/llmkey.js --compile --outfile binaries/llmkey-macos-x64   --target bun-darwin-x64
 
       - name: Sign macOS binaries
         run: |
@@ -42,19 +39,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
+      - uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: npm install
+        run: bun install
 
       - name: Build Linux and Windows binaries
         run: |
-          npm run build
           mkdir -p binaries
-          npx pkg dist/index.js --targets node24-linux-x64 --output binaries/llmkey-linux-x64
-          npx pkg dist/index.js --targets node24-win-x64   --output binaries/llmkey-win-x64.exe
+          bun build bin/llmkey.js --compile --outfile binaries/llmkey-linux-x64  --target bun-linux-x64
+          bun build bin/llmkey.js --compile --outfile binaries/llmkey-win-x64.exe --target bun-windows-x64
 
       - uses: actions/upload-artifact@v4
         with:
