@@ -4,6 +4,37 @@ A global CLI for managing LLM provider API keys. Keys are stored in `~/.llmkey` 
 
 ## Install
 
+### macOS / Linux (no Node.js required)
+
+Download the binary for your platform from [GitHub Releases](https://github.com/itsbohara/llmkey/releases/latest):
+
+**macOS — Apple Silicon (M1/M2/M3):**
+```sh
+curl -L https://github.com/itsbohara/llmkey/releases/latest/download/llmkey-macos-arm64 -o llmkey
+chmod +x llmkey
+sudo mv llmkey /usr/local/bin/
+```
+
+**macOS — Intel:**
+```sh
+curl -L https://github.com/itsbohara/llmkey/releases/latest/download/llmkey-macos-x64 -o llmkey
+chmod +x llmkey
+sudo mv llmkey /usr/local/bin/
+```
+
+**Linux:**
+```sh
+curl -L https://github.com/itsbohara/llmkey/releases/latest/download/llmkey-linux-x64 -o llmkey
+chmod +x llmkey
+sudo mv llmkey /usr/local/bin/
+```
+
+**Windows:**
+
+Download `llmkey-win-x64.exe` from [releases](https://github.com/itsbohara/llmkey/releases/latest), rename it to `llmkey.exe`, and add it to a folder in your `PATH`.
+
+### Via npm
+
 ```sh
 npm install -g .
 ```
@@ -46,5 +77,5 @@ export ANTHROPIC_API_KEY='sk-ant-...'
 
 ## Requirements
 
-- Node.js >= 16
-- zsh
+- zsh (for `llmkey init` shell integration)
+- Node.js >= 16 (only if installing via npm)
