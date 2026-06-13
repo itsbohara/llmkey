@@ -13,7 +13,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24
 
       - name: Install dependencies
         run: npm install
@@ -21,14 +21,14 @@ jobs:
       - name: Build macOS binaries
         run: |
           npm run build
-          npx pkg dist/index.js --targets node18-macos-arm64,node18-macos-x64 --out-path binaries
+          mkdir -p binaries
+          npx pkg dist/index.js --targets node24-macos-arm64 --output binaries/llmkey-macos-arm64
+          npx pkg dist/index.js --targets node24-macos-x64   --output binaries/llmkey-macos-x64
 
-      - name: Sign and rename macOS binaries
+      - name: Sign macOS binaries
         run: |
-          codesign --sign - binaries/index-macos-arm64
-          codesign --sign - binaries/index-macos-x64
-          mv binaries/index-macos-arm64 binaries/llmkey-macos-arm64
-          mv binaries/index-macos-x64   binaries/llmkey-macos-x64
+          codesign --sign - binaries/llmkey-macos-arm64
+          codesign --sign - binaries/llmkey-macos-x64
 
       - uses: actions/upload-artifact@v4
         with:
@@ -44,7 +44,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24
 
       - name: Install dependencies
         run: npm install
@@ -52,12 +52,9 @@ jobs:
       - name: Build Linux and Windows binaries
         run: |
           npm run build
-          npx pkg dist/index.js --targets node18-linux-x64,node18-win-x64 --out-path binaries
-
-      - name: Rename binaries
-        run: |
-          mv binaries/index-linux-x64   binaries/llmkey-linux-x64
-          mv binaries/index-win-x64.exe binaries/llmkey-win-x64.exe
+          mkdir -p binaries
+          npx pkg dist/index.js --targets node24-linux-x64 --output binaries/llmkey-linux-x64
+          npx pkg dist/index.js --targets node24-win-x64   --output binaries/llmkey-win-x64.exe
 
       - uses: actions/upload-artifact@v4
         with:
