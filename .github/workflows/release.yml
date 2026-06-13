@@ -1,0 +1,40 @@
+name: Release Binaries
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build binaries
+        run: npm run build:binaries
+
+      - name: Rename binaries
+        run: |
+          mv binaries/index-macos-arm64 binaries/llmkey-macos-arm64
+          mv binaries/index-macos-x64   binaries/llmkey-macos-x64
+          mv binaries/index-linux-x64   binaries/llmkey-linux-x64
+          mv binaries/index-win-x64.exe binaries/llmkey-win-x64.exe
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            binaries/llmkey-macos-arm64
+            binaries/llmkey-macos-x64
+            binaries/llmkey-linux-x64
+            binaries/llmkey-win-x64.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
